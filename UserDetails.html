@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>User Details Form</h2>
+    <form id="userForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="contact">Contact:</label>
+        <input type="tel" id="contact" name="contact" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address" required>
+
+        <label for="skills">Skills:</label>
+        <textarea id="skills" name="skills" rows="3" required></textarea>
+
+        <label for="education">Education:</label>
+        <textarea id="education" name="education" rows="3" required></textarea>
+
+        <label for="reference">Reference:</label>
+        <textarea id="reference" name="reference" rows="2" required></textarea>
+
+        <label for="profilePicture">Profile Picture:</label>
+        <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('userForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+        
+        // Get form values
+        const name = document.getElementById('name').value;
+        const contact = document.getElementById('contact').value;
+        const address = document.getElementById('address').value;
+        const skills = document.getElementById('skills').value;
+        const education = document.getElementById('education').value;
+        const reference = document.getElementById('reference').value;
+        const profilePicture = document.getElementById('profilePicture').files[0];
+
+        // Save data to localStorage
+        localStorage.setItem('name', name);
+        localStorage.setItem('contact', contact);
+        localStorage.setItem('address', address);
+        localStorage.setItem('skills', skills);
+        localStorage.setItem('education', education);
+        localStorage.setItem('reference', reference);
+
+        // Convert profile picture to base64 and save it
+        const reader = new FileReader();
+        reader.onloadend = function() {
+            localStorage.setItem('profilePicture', reader.result);
+            window.location.href = 'Display.html'; // Redirect to the display page
+        };
+        reader.readAsDataURL(profilePicture);
+    });
+</script>
+
+</body>
+</html>

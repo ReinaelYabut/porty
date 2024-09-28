@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display User Profile</title>
+    <link id="templateStylesheet" rel="stylesheet" href=""> <!-- Dynamically loaded stylesheet -->
+</head>
+<body>
+
+    <div class="profile-container">
+        <h1>User Profile</h1>
+
+        <!-- Profile Picture -->
+        <div class="profile-section">
+            <h3>Profile Picture</h3>
+            <img id="profilePic" alt="Profile Picture">
+        </div>
+
+        <!-- User Info -->
+        <div class="profile-section">
+            <h3>Personal Information</h3>
+            <div><strong>Name:</strong> <span id="displayName"></span></div>
+            <div><strong>Contact:</strong> <span id="displayContact"></span></div>
+            <div><strong>Address:</strong> <span id="displayAddress"></span></div>
+        </div>
+
+        <!-- Skills -->
+        <div class="profile-section">
+            <h3>Skills</h3>
+            <div id="displaySkills"></div>
+        </div>
+
+        <!-- Education -->
+        <div class="profile-section">
+            <h3>Education</h3>
+            <div id="displayEducation"></div>
+        </div>
+
+        <!-- Reference -->
+        <div class="profile-section">
+            <h3>Reference</h3>
+            <div id="displayReference"></div>
+        </div>
+    </div>
+
+    <script src="Display.js"></script> <!-- Main JS for displaying user details -->
+    <script>
+        // Load the selected template CSS and JS based on the stored value
+        const selectedTemplate = localStorage.getItem('selectedTemplate');
+        
+        // Dynamically load CSS
+        const templateStylesheet = document.getElementById('templateStylesheet');
+        if (selectedTemplate) {
+            templateStylesheet.href = `css/${selectedTemplate}.css`; // Adjusted path
+
+            // Dynamically load JS
+            const script = document.createElement('script');
+            script.src = `js/${selectedTemplate}.js`; // Adjusted path
+            document.body.appendChild(script);
+        }
+    </script>
+</body>
+</html>

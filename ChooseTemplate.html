@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            margin-top: 10px;
+            display: block;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Choose Your Template</h2>
+    <form id="templateForm">
+        <label>
+            <input type="radio" name="template" value="template1" required> Template 1
+        </label>
+        <label>
+            <input type="radio" name="template" value="template2"> Template 2
+        </label>
+        <label>
+            <input type="radio" name="template" value="template3"> Template 3
+        </label>
+        <button type="submit">Proceed to User Details</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('templateForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form from submitting normally
+        
+        const selectedTemplate = document.querySelector('input[name="template"]:checked').value;
+        localStorage.setItem('selectedTemplate', selectedTemplate); // Save selected template to localStorage
+        
+        window.location.href = 'UserDetails.html'; // Redirect to the User Details page
+    });
+</script>
+
+</body>
+</html>
